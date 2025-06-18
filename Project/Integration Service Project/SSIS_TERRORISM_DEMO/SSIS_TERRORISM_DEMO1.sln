@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "SSIS_TERRORISM_DEMO", "SSIS_TERRORISM_DEMO\SSIS_TERRORISM_DEMO.dtproj", "{B3C10732-0E77-4618-81A9-1C0B15E9964F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3C10732-0E77-4618-81A9-1C0B15E9964F}.Development|Default.ActiveCfg = Development
+		{B3C10732-0E77-4618-81A9-1C0B15E9964F}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F88CC5C7-1057-477A-8F03-F3563FE2B18C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,389 @@
+USE MASTER
+
+/* DROP CONNECTION */
+DECLARE @DatabaseName nvarchar(50)
+SET @DatabaseName = N'Terrorism'
+
+DECLARE @SQL varchar(max)
+
+SELECT @SQL = COALESCE(@SQL,'') + 'Kill ' + Convert(varchar, SPId) + ';'
+FROM MASTER..SysProcesses
+WHERE DBId = DB_ID(@DatabaseName) AND SPId <> @@SPId
+
+--SELECT @SQL 
+EXEC(@SQL)
+
+--DROP DATABASE Terrorism
+CREATE DATABASE Terrorism;
+USE Terrorism;
+
+-- Truncate Tables
+--DELETE FROM Fact_Incident;
+--DELETE FROM Dim_Location_Details;
+--DELETE FROM Dim_Location;
+--DELETE FROM Dim_Date;
+--DELETE FROM Dim_AttackType;
+--DELETE FROM Dim_TargetType;
+--DELETE FROM Dim_WeaponType;
+--DELETE FROM Dim_GName;
+
+USE [master]
+GO
+/****** Object:  Database [Terrorism]    Script Date: 4/22/2024 10:55:24 AM ******/
+CREATE DATABASE [Terrorism]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Terrorism', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\Terrorism.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Terrorism_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\Terrorism_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [Terrorism] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Terrorism].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Terrorism] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Terrorism] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Terrorism] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Terrorism] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Terrorism] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Terrorism] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Terrorism] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Terrorism] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Terrorism] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Terrorism] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Terrorism] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Terrorism] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Terrorism] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Terrorism] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Terrorism] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [Terrorism] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Terrorism] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Terrorism] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Terrorism] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Terrorism] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Terrorism] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Terrorism] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Terrorism] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [Terrorism] SET  MULTI_USER 
+GO
+ALTER DATABASE [Terrorism] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Terrorism] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Terrorism] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Terrorism] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [Terrorism] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [Terrorism] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Terrorism', N'ON'
+GO
+ALTER DATABASE [Terrorism] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [Terrorism] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [Terrorism]
+GO
+/****** Object:  Table [dbo].[Dim_AttackType]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_AttackType](
+	[AttackTypeID] [int] NOT NULL,
+	[AttackType] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[AttackTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_City]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_City](
+	[CityID] [int] IDENTITY(1,1) NOT NULL,
+	[CityName] [varchar](255) NULL,
+	[ProvStateID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_Country]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_Country](
+	[CountryID] [int] NOT NULL,
+	[CountryName] [varchar](255) NULL,
+	[RegionID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CountryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_Date]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_Date](
+	[DateID] [int] IDENTITY(1,1) NOT NULL,
+	[dYear] [int] NULL,
+	[dMonth] [tinyint] NULL,
+	[dDay] [tinyint] NULL,
+	[dDate] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[DateID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_GName]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_GName](
+	[GNameID] [int] IDENTITY(1,1) NOT NULL,
+	[GName] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[GNameID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_Location]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_Location](
+	[LocationID] [int] IDENTITY(1,1) NOT NULL,
+	[CityID] [int] NULL,
+	[Latitude] [varchar](50) NULL,
+	[Longitude] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[LocationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_ProvState]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_ProvState](
+	[ProvStateID] [int] IDENTITY(1,1) NOT NULL,
+	[ProvState] [varchar](255) NULL,
+	[CountryID] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ProvStateID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_Region]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_Region](
+	[RegionID] [int] NOT NULL,
+	[RegionName] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[RegionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_TargetType]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_TargetType](
+	[TargetTypeID] [int] NOT NULL,
+	[TargetType] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[TargetTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Dim_WeaponType]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Dim_WeaponType](
+	[WeaponTypeID] [int] NOT NULL,
+	[WeaponType] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[WeaponTypeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Fact_Incident]    Script Date: 4/22/2024 10:55:24 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Fact_Incident](
+	[FactID] [bigint] NOT NULL,
+	[DateID] [int] NULL,
+	[LocationID] [int] NULL,
+	[AttackTypeID] [int] NULL,
+	[TargetTypeID] [int] NULL,
+	[WeaponTypeID] [int] NULL,
+	[Kills] [int] NULL,
+	[Wounds] [int] NULL,
+	[PropertyDamage] [int] NULL,
+	[GNameID] [int] NULL,
+	[Success] [int] NULL,
+	[Suicide] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[FactID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Dim_City]  WITH CHECK ADD FOREIGN KEY([ProvStateID])
+REFERENCES [dbo].[Dim_ProvState] ([ProvStateID])
+GO
+ALTER TABLE [dbo].[Dim_Country]  WITH CHECK ADD FOREIGN KEY([RegionID])
+REFERENCES [dbo].[Dim_Region] ([RegionID])
+GO
+ALTER TABLE [dbo].[Dim_Location]  WITH CHECK ADD FOREIGN KEY([CityID])
+REFERENCES [dbo].[Dim_City] ([CityID])
+GO
+ALTER TABLE [dbo].[Dim_ProvState]  WITH CHECK ADD FOREIGN KEY([CountryID])
+REFERENCES [dbo].[Dim_Country] ([CountryID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([AttackTypeID])
+REFERENCES [dbo].[Dim_AttackType] ([AttackTypeID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([DateID])
+REFERENCES [dbo].[Dim_Date] ([DateID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([GNameID])
+REFERENCES [dbo].[Dim_GName] ([GNameID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([LocationID])
+REFERENCES [dbo].[Dim_Location] ([LocationID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([TargetTypeID])
+REFERENCES [dbo].[Dim_TargetType] ([TargetTypeID])
+GO
+ALTER TABLE [dbo].[Fact_Incident]  WITH CHECK ADD FOREIGN KEY([WeaponTypeID])
+REFERENCES [dbo].[Dim_WeaponType] ([WeaponTypeID])
+GO
+USE [master]
+GO
+ALTER DATABASE [Terrorism] SET  READ_WRITE 
+GO
+
+
+USE Terrorism
+SELECT * FROM Dim_Date
+SELECT * FROM Dim_AttackType
+SELECT * FROM Dim_WeaponType
+SELECT * FROM Dim_TargetType
+SELECT * FROM Dim_Country
+SELECT * FROM Dim_Region
+SELECT * FROM Dim_ProvState where ProvStateID = 818
+SELECT * FROM Dim_City
+SELECT * FROM Dim_Location
+SELECT * FROM Dim_GName
+SELECT * FROM Fact_Incident
+
+
+SELECT * FROM Dim_ProvState P, Dim_Country C, Dim_Region R
+WHERE P.CountryID = C.CountryID 
+AND C.RegionID = R.RegionID
+
+SELECT * FROM Dim_ProvState p, Dim_City c
+WHERE p.ProvStateID = c.ProvStateID
+AND p.CountryID = 147
+AND p.ProvState = 'Adamawa'
+
+SELECT g.*, COUNT(*) AS IncidentCount, SUM(Success) as Success, SUM(Suicide) as Suicide
+FROM Fact_Incident f
+JOIN Dim_GName g ON f.GNameID = g.GNameID
+WHERE 1 = 1
+AND Success = 0
+AND Suicide > Success
+AND TargetTypeID IN (7,2)
+GROUP BY g.GNameID, g.GName, Success, Suicide
+
+SELECT *
+FROM Fact_Incident f
+JOIN Dim_GName g ON f.GNameID = g.GNameID 
+WHERE 1 = 1
+--AND g.GName = 'Youth Gang'
+AND TargetTypeID IN (7,2)
+AND Suicide > Success
+AND Success = 0
+
+SELECT *
+FROM Fact_Incident f
+JOIN Dim_Date d ON f.DateID = d.DateID
+--JOIN Dim_GName g ON G.GNameID = F.GNameID
+JOIN Dim_Location l ON f.LocationID = l.LocationID
+WHERE 1 = 1 
+--AND d.dDate = '2005-07-07'
+AND L.LocationID = 28863
+
+SELECT * FROM Fact_Incident ORDER BY LocationID
+
+SELECT * FROM Dim_Location l JOIN Fact_Incident F ON L.LocationID = F.LocationID WHERE L.CityID = 21651
+
+SELECT * FROM Dim_Location l JOIN Dim_City C ON L.CityID = C.CityID WHERE L.CityID = 21651
+
+SELECT *
+FROM Fact_Incident f
+JOIN Dim_Date D ON D.DateID = F.DateID
+JOIN Dim_Location L ON F.LocationID = L.LocationID
+JOIN Dim_City C ON C.CityID = L.CityID
+WHERE D.dYear = 1970
+AND D.dMonth = 9
+AND D.dDay = 12
+
+select * from Dim_Location WHERE Latitude = '51.504387'

@@ -1,0 +1,13 @@
+SSAS
+ - Manual: Kéo thả...
+ - Pivot excel: nên trình bày 15 queries trong Báo cáo
+ - MDX: Trình bày 15 queries trong báo cáo (Thi CK)
+
+MDX (able to truy vấn dữ liệu đa chiều)
+
+SQl				MDX
+- Select, from, where		- Select, from, where
+- Kqua 2 chiều			- Kqua đa chiều
+- Chọn các cột			- Chọn các tập ô
+- Kqua là một quan hệ		- Kqua là 1 khối
+- Chọn từ các quan hệ		- Chọn từ 1 khối

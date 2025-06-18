@@ -1,0 +1,98 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|solutionrelative:Terrorism SSAS\\Terrorism.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Target Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|solutionrelative:Terrorism SSAS\\Dim Target Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|solutionrelative:Terrorism SSAS\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{0B59B046-FBAF-4335-81E5-39E2494D6695}|Terrorism SSAS\\Terrorism SSAS.dwproj|solutionrelative:Terrorism SSAS\\Terrorism.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 452,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Terrorism.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.cube",
+              "RelativeDocumentMoniker": "Terrorism SSAS\\Terrorism.cube",
+              "ToolTip": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.cube [Design]",
+              "RelativeToolTip": "Terrorism SSAS\\Terrorism.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-14T13:33:53.861Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Date.dim",
+              "RelativeDocumentMoniker": "Terrorism SSAS\\Dim Date.dim",
+              "ToolTip": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Date.dim [Design]",
+              "RelativeToolTip": "Terrorism SSAS\\Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-13T11:55:31.214Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Terrorism.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.dsv",
+              "RelativeDocumentMoniker": "Terrorism SSAS\\Terrorism.dsv",
+              "ToolTip": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Terrorism.dsv [Design]",
+              "RelativeToolTip": "Terrorism SSAS\\Terrorism.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-13T11:52:19.469Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dim Target Type.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Target Type.dim",
+              "RelativeDocumentMoniker": "Terrorism SSAS\\Dim Target Type.dim",
+              "ToolTip": "C:\\Users\\Nhan Nub\\Desktop\\OLAP\\SSAS\\Demo\\Terrorism SSAS\\Terrorism SSAS\\Dim Target Type.dim [Design]",
+              "RelativeToolTip": "Terrorism SSAS\\Dim Target Type.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-13T11:55:14.061Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 172,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+NT Service\MSSQLServerOLAPService
+
+
+thống kê toogrn giá
+	SELECT [Measures].[Gia thoa thuan] ON COLUMNS, 
+		[Dim Cong Ty].[Cty].[Cty].Members ON ROWS
+	FROM [Ban_Bat Dong San]
+	WHERE [Dim Ngay Ban].[Date].[Nam].&[2016];
+
+liệt kê các bđs có giá thỏa thuận cao nhất
+	SELECT TOPCOUNT([Dim Bat Dong San].[BDS].children, 1, [Measures].[Max GiaThoaThuan]),
+		[Measures].[Max GiaThoaThuan] on Columns
+	FROM [Ban_BatDongSan];
+	_________________
+	SELECT {[Measures].[Fact Ban Count]} ON COLUMNS,
+	NON EMPTY {[Dim Cong Ty].[Cty].[Cty].MEMBERS}
+	HAVING [Measures].[Fact Ban Count] > 10 ON ROWS
+	FROM [Ban_BatDongSan];
+
+Drill down tất cả năm thành quý (có thể sử dụng trong đồ án)
+	SELECT [Measures].[Gia Thoa Thuan] ON COLUMNS,
+	DrillDownLevel(
+		[Dim Ngay Ban].[Dates].[Nam].MEMBERS
+	) ON ROWS
+	FROM [Ban_BatDongSan];
+	_________________
+	SELECT [Measures].[Gia Thoa Thuan] ON COLUMNS,
+	DrillDownMember(
+		[Dim Ngay Ban].[Dates].[Nam].MEMBERS,
+	) ON ROWS
+	FROM [Ban_BatDongSan];

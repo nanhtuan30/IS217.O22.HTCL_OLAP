@@ -1,0 +1,3 @@
+SSAS -> Data Source -> Account:
+	todeptrai
+	Tuan3010
